@@ -26,13 +26,18 @@ import (
 // distanceCmd represents the distance command
 var distanceCmd = &cobra.Command{
 	Use:   "distance",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Distance between two points on earth",
+	Long: `Calculates distance between two points on earth.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+geogo distance 45.55 45.99 66.99 67.88
+
+where:
+
+arg0 (45.55) is first point latitude
+arg1 (45.99) is first point longitude
+arg2 (66.99) is second point latitude
+arg3 (57.99) is second point longitude
+`,
 	Run: func(cmd *cobra.Command, args []string) {
 		distance(args)
 	},

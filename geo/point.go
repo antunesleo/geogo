@@ -14,16 +14,16 @@ func degreesToRadians(d float64) float64 {
 }
 
 func (fp Point) DistanceBetween(sp Point) float64 {
-	var firstLat = degreesToRadians(fp.Lat)
-	var firstLong = degreesToRadians(fp.Long)
-	var secondLat = degreesToRadians(sp.Lat)
-	var secondLon = degreesToRadians(sp.Long)
+	firstLat := degreesToRadians(fp.Lat)
+	firstLong := degreesToRadians(fp.Long)
+	secondLat := degreesToRadians(sp.Lat)
+	secondLon := degreesToRadians(sp.Long)
 
-	var result = math.Acos(
+	result := math.Acos(
 		(math.Sin(firstLat) * math.Sin(secondLat)) +
 			math.Cos(firstLat)*math.Cos(secondLat)*
 				math.Cos(secondLon-firstLong),
 	)
-	var earth_readius_in_km = 6378.137
+	const earth_readius_in_km = 6378.137
 	return earth_readius_in_km * result
 }

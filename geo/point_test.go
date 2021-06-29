@@ -4,6 +4,7 @@ import (
 	"math"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"gopkg.in/validator.v2"
 )
 
@@ -25,21 +26,18 @@ func TestDistanceBetween(t *testing.T) {
 
 func TestPointValidationSuccess(t *testing.T) {
 	p := Point{48, 48}
-	if errs := validator.Validate(p); errs != nil {
-		t.Errorf("Point validation failed, errors: %s", errs)
-	}
+	errs := validator.Validate(p)
+	assert.NoError(t, errs)
 }
 
 func TestPointValidationLatitudeError(t *testing.T) {
 	p := Point{200, 10}
-	if errs := validator.Validate(p); errs == nil {
-		t.Errorf("Point validation succeed but must fail, latitude %f is invalid", p.Lat)
-	}
+	errs := validator.Validate(p)
+	assert.NotNil(t, errs)
 }
 
 func TestPointValidationLongitudeError(t *testing.T) {
 	p := Point{10, 200}
-	if errs := validator.Validate(p); errs == nil {
-		t.Errorf("Point validation succeed but must fail, latitude %f is invalid", p.Lat)
-	}
+	errs := validator.Validate(p)
+	assert.NotNil(t, errs)
 }
